@@ -18,7 +18,7 @@ export class UserService {
       //this es una referencia a userService . userRepository . funcion save dentro de ella guardamos el usuario que nos viene de createUserDto
       return {
       statusCode : 201,
-      msg : 'El registro del usuario se realizo con exito.'
+      msg : 'El registro del usuario se realizo con exito'
     };
   }
   catch(error){
