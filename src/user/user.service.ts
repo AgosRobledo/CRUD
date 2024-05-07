@@ -1,10 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NestMiddleware } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthService } from 'src/auth.service';
+import { Request, Response, NextFunction } from 'express';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { LoggerMiddleware } from './logger.middleware';
+
+
 //SERVICE:se encarga de controlar toda la logica de la aplicacion 
 //para conectarnos con la base de datos vamos a tener que tener una ORM herramienta que nos permite conectar el backend con la base de datos, nos va a simplificar las acciones sobre nuestra BDD 
 //FIND: obtener datos 
@@ -99,3 +104,18 @@ export class UserService {
 //           "msg" : 'El usuario ha sido eliminado correctamente'
 
 
+
+@Injectable()
+export class LoggerMiddleware implements NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    console.log('Request...');
+    next();
+  }
+}
+
+@Module({})
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
