@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { AuthService } from 'src/auth.service';
 //SERVICE:se encarga de controlar toda la logica de la aplicacion 
 //para conectarnos con la base de datos vamos a tener que tener una ORM herramienta que nos permite conectar el backend con la base de datos, nos va a simplificar las acciones sobre nuestra BDD 
 //FIND: obtener datos 
@@ -92,6 +93,9 @@ export class UserService {
     }
   } 
 }
+
 //el archivo JSON son archivos con un codigo y un mensaje
 //          "statusCode" : 200,
 //           "msg" : 'El usuario ha sido eliminado correctamente'
+
+
