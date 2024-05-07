@@ -1,4 +1,4 @@
-//ENTiTY:simula una tabla de la base de datos, nombre user 
+//ENTiTY:simula una tabla de la base de datos, nombre user. Acá van a estra todos los atributos de las tablas
 import {Column, Entity, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity ({
